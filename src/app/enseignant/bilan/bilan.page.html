@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>bilan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+  <ion-content>
+<ion-item >
+  <h1> Spécialité </h1>
+</ion-item>
+
+ 
+  
+    <ion-item *ngFor="let specialite of specialites"  [routerLink]="['/enseignant/detail-module',specialite.id]">
+      <ion-label> {{specialite.nom}}  </ion-label>
+    </ion-item>
+
+</ion-content>

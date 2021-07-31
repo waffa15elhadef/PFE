@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detailModule</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-item>
+  <h1>
+  {{specialite.nom}}
+
+</h1>
+</ion-item>
+<ion-item *ngFor="let item of specialite.modules" [routerLink]="['/enseignant/fiche-module', item.id]">
+  {{item.nom}}
+ </ion-item>
+</ion-content>

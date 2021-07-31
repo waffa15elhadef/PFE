@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>form Etudiant</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form (ngSubmit)="submit()" [formGroup]="etudiantForm">
+  <ion-item lines="full">
+    <ion-label position="floating">Name</ion-label>
+    <ion-input type="text" formControlName="name"></ion-input>
+  </ion-item>
+  <ion-item *ngIf=" Name.touched && Name.invalid " lines="none">
+    <ion-label color="danger" *ngIf="Name.errors.required">
+      Error <strong>Name required</strong>
+    </ion-label>
+
+  </ion-item>
+
+
+  <ion-item lines="full">
+    <ion-label position="floating">birthdate</ion-label>
+    <ion-datetime displayFormat="MM DD YYYY" formControlName="birthdate" placeholder="Select Date"></ion-datetime>
+
+  </ion-item>
+  <ion-item *ngIf=" Birthdate.touched && Birthdate.invalid " lines="none">
+    <ion-label color="danger" *ngIf="Birthdate.errors.required">
+      Error <strong>Birthdate required</strong>
+    </ion-label>
+
+  </ion-item>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="text" formControlName="email"></ion-input>
+  </ion-item>
+  <ion-item *ngIf=" Email.touched && Email.invalid " lines="none">
+    <ion-label color="danger" *ngIf="Email.errors.required">
+      Error <strong>Email required</strong>
+    </ion-label>
+  
+    <ion-label color="danger" *ngIf="Email.errors.email">
+      Error <strong>Email Invalide</strong>
+    </ion-label>
+   
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-button [disabled]="!etudiantForm.valid" type="submit" color="primary" expand="block">{{title}}</ion-button>
+    </ion-col>
+  </ion-row>
+</form>
+</ion-content>

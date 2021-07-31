@@ -1,0 +1,71 @@
+<ion-app>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" >
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-item-divider>
+            <ion-label>
+              Admin
+            </ion-label>
+          </ion-item-divider>
+
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of [1]; let i = index">
+            <ion-list>
+            
+             
+              <ion-item   [routerLink]="['/admin/home']">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+
+                Acceuil
+              </ion-item>
+              
+              <ion-item   [routerLink]="['/admin/listes-enseignants']">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+
+                Enseignant
+              </ion-item>
+              
+              <ion-item>
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+
+                Spécialité
+              </ion-item>
+
+              <ion-item [routerLink]="['/admin/affectation']">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+
+                Affectation
+              </ion-item>
+             
+
+              <ion-item-divider>
+                <ion-label>
+                  Menu Ensiegnant
+                </ion-label>
+              </ion-item-divider>
+
+              <ion-item   [routerLink]="['/enseignant/bilan']">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+    
+                Bilan
+              </ion-item> 
+            </ion-list>
+          </ion-menu-toggle>
+              
+
+       
+             
+        </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

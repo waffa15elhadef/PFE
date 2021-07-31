@@ -1,0 +1,27 @@
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button
+              [text]="return"
+              [icon]="arrow">
+          </ion-back-button>
+        </ion-buttons>
+        
+    <ion-title>affectation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item >
+    <h1> Affectation des modules </h1>
+  </ion-item>
+  
+   
+    
+      <ion-item *ngFor="let specialite of specialites"  [routerLink]="['/admin/affectation-form',specialite.id]">
+        <ion-label> {{specialite.nom}}  </ion-label>
+      </ion-item>
+  
+  </ion-content>
+  

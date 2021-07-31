@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>listesEtudiants</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="return" [icon]="arrow"> </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item   [routerLink]="['/admin/etudiantpar-specialite']">
+    <ion-label>
+    <h1>Licence 1</h1>
+
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+    <h1>Licence 2</h1>
+
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+    <h1>Licence 3  </h1>
+
+    </ion-label>
+  </ion-item>
+  <div class="accordion" id="accordionExample">
+ 
+    
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
+          Master 1
+        </button>
+      </h2>
+      <div
+        id="collapseTwo"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingTwo"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <!-- hna tu met l contenu ta3ek -->
+        
+          <ion-item>
+            <ion-label>
+            IL
+            </ion-label>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label>
+          ISIA
+          </ion-label>
+      </ion-item>
+        <ion-item>
+          <ion-label>
+          RSD
+          </ion-label>
+      </ion-item>
+     
+          
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseThree"
+          aria-expanded="false"
+          aria-controls="collapseThree"
+        >
+          Master 2
+        </button>
+      </h2>
+      <div
+        id="collapseThree"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingThree"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <!-- hna tu met l contenu ta3ek -->
+          <ion-list>
+            <ion-item *ngFor="let entry of form">
+              <ion-label>{{entry.val}}</ion-label>
+              <ion-checkbox
+                slot="end"
+                [(ngModel)]="entry.isChecked"
+              ></ion-checkbox>
+            </ion-item>
+          </ion-list>
+
+            <ion-item>
+              <ion-label>
+              IL
+              </ion-label>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>
+            ISIA
+            </ion-label>
+        </ion-item>
+          <ion-item>
+            <ion-label>
+            RSD
+            </ion-label>
+        </ion-item>
+       
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="danger" class="">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button
+        color="primary"
+        data-desc="Nouvel utilisateur"
+        (click)="AjouterEtudiant()"
+      >
+        <ion-icon name="reorder-four-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
