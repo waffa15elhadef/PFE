@@ -1,3 +1,4 @@
+import { EnseignantService } from './../../../shared/services/enseignant.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
@@ -7,26 +8,31 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['./listes-enseignants.page.scss'],
 })
 export class ListesEnseignantsPage implements OnInit {
+  constructor(
+    private actionSheetController: ActionSheetController,
+    private router: Router,
+    private enseignantService: EnseignantService
+  ) {}
 
-  constructor( private actionSheetController:ActionSheetController,private router: Router) { }
-
+  enseignants = [];
   ngOnInit() {
-    
+    this.enseignantService.getAll().subscribe((res: any) => {
+      console.log(res);
+      this.enseignants = res;
+    });
   }
-  displayMenu(){
-    this.presentActionSheet();
+  displayMenu(id) {
+    this.presentActionSheet(id);
   }
-  async presentActionSheet() {
+  async presentActionSheet(id) {
     const actionSheet = await this.actionSheetController.create({
-    
       buttons: [
         {
           text: 'Delete',
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            console.log('Delete clicked');
-          },
+this.deletee(id)          },
         },
         {
           text: 'Edit',
@@ -57,8 +63,12 @@ export class ListesEnseignantsPage implements OnInit {
     const { role } = await actionSheet.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
-AjouterEnseignant(){
-this.router.navigate(['admin/form-enseignant']);
-}
-
+  AjouterEnseignant() {
+    this.router.navigate(['admin/form-enseignant']);
+  }
+  deletee(id) {
+    this.enseignantService.delete(id).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }

@@ -14,12 +14,10 @@
   <ion-searchbar ></ion-searchbar>
 <h1>Liste des enseignants</h1>
 <ion-list>
-  <ion-item (press)="displayMenu()" [routerLink]="['/admin/detail-enseignant']" >
-    <ion-label>Kadri Walid </ion-label>
+  <ion-item *ngFor="let enseignant of enseignants"  (press)="displayMenu(enseignant.id_enseignant)" [routerLink]="['/admin/detail-enseignant',enseignant.id_enseignant]" >
+    <ion-label>{{enseignant.nom}} </ion-label>
   </ion-item>
-  <ion-item  (press)="displayMenu()" [routerLink]="['/admin/detail-enseignant']">
-    <ion-label> medjahed chaher eddine </ion-label>
-  </ion-item>
+ 
 
 </ion-list>
 

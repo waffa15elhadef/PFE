@@ -57,7 +57,7 @@ const routes: Routes = [
     loadChildren: () => import('./admin/listes-enseignants/listes-enseignants.module').then( m => m.ListesEnseignantsPageModule)
   },
   {
-    path: 'admin/detail-enseignant',
+    path: 'admin/detail-enseignant/:id',
     loadChildren: () => import('./admin/detail-enseignant/detail-enseignant.module').then( m => m.DetailEnseignantPageModule)
   },
   {
