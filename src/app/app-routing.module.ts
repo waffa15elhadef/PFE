@@ -1,3 +1,4 @@
+import { ListeSpecialitePageModule } from './admin/specialite/liste-specialite/liste-specialite.module';
 import { FormModulePageModule } from './admin/form-module/form-module.module';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
@@ -73,8 +74,8 @@ const routes: Routes = [
     loadChildren: () => import('./admin/detail-etudiant/detail-etudiant.module').then( m => m.DetailEtudiantPageModule)
   },
   {
-    path: 'admin/etudiantpar-specialite',
-    loadChildren: () => import('./admin/etudiantpar-specialite/etudiantpar-specialite.module').then( m => m.EtudiantparSpecialitePageModule)
+    path: 'admin/specialite',
+    loadChildren: () => import('./admin/specialite/liste-specialite/liste-specialite.module').then( m => m.ListeSpecialitePageModule)
   },
   {
     path: 'admin/form-etudiant',

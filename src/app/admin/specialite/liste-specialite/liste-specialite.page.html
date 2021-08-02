@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>listesEnseignants</ion-title>
+    <ion-title>liste Spécialité</ion-title>
     <ion-buttons slot="start">
       <ion-back-button
           [text]="return"
@@ -16,12 +16,12 @@
   </ion-refresher>
   <ion-searchbar   debounce="500"
   (ionInput)="searchStudent($event)"></ion-searchbar>
-<h1>Liste des enseignants</h1>
+<h1>Liste des specialites</h1>
 
-<div  *ngIf="filtredEnseignants != null && filtredEnseignants.length>0;else noRes">
+<div  *ngIf="filtredSpecialites != null && filtredSpecialites.length>0;else noRes">
   <ion-list>
-    <ion-item *ngFor="let enseignant of filtredEnseignants"  (press)="displayMenu(enseignant.id_enseignant)" [routerLink]="['/admin/detail-enseignant',enseignant.id_enseignant]" >
-      <ion-label>{{enseignant.nom}} </ion-label>
+    <ion-item *ngFor="let specialite of filtredSpecialites"  (press)="displayMenu(specialite.id_specialite)" >
+      <ion-label>{{specialite.nom}} </ion-label>
     </ion-item>
    
   
@@ -36,7 +36,7 @@
     <ion-row>
       <ion-col>
         <ion-label color="danger">
-          pas d'enseignants dans le système
+          pas d'specialites dans le système
         </ion-label>
       </ion-col>
     </ion-row>
@@ -58,4 +58,3 @@
 </ion-content>
 
   
-

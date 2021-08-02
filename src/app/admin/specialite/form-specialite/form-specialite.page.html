@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+  
+<ion-title>Nouvel specialite </ion-title>
+<ion-buttons slot="end">
+  <ion-button (click)="close()">Close</ion-button>
+</ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<form (ngSubmit)="submit()" [formGroup]="specialiteForm">
+<ion-item lines="full">
+  <ion-label position="floating">Nom</ion-label>
+  <ion-input type="text" formControlName="nom"></ion-input>
+</ion-item>
+<ion-item *ngIf=" Nom.touched && Nom.invalid " lines="none">
+  <ion-label color="danger" *ngIf="Nom.errors.required">
+    Error <strong>Nom Obligatoire </strong>
+  </ion-label>
+
+</ion-item>
+
+<ion-item lines="full">
+  <ion-label position="floating">Code</ion-label>
+  <ion-input type="text" formControlName="code"></ion-input>
+</ion-item>
+<ion-item *ngIf=" Code.touched && Code.invalid " lines="none">
+  <ion-label color="danger" *ngIf="Code.errors.required">
+    Error <strong>Code Obligatoire </strong>
+  </ion-label>
+
+</ion-item>
+
+<ion-item lines="full">
+  <ion-label position="floating">Filiere</ion-label>
+  <ion-input type="text" formControlName="filiere"></ion-input>
+</ion-item>
+<ion-item *ngIf=" Filiere.touched && Filiere.invalid " lines="none">
+  <ion-label color="danger" *ngIf="Filiere.errors.required">
+    Error <strong>Filiere Obligatoire </strong>
+  </ion-label>
+
+</ion-item>
+<ion-row>
+  <ion-col>
+    <ion-button [disabled]="!specialiteForm.valid" type="submit" color="primary" expand="block">{{title}}</ion-button>
+  </ion-col>
+</ion-row>
+</form>
+
+
+</ion-content>

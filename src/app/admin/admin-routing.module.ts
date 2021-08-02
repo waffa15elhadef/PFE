@@ -19,6 +19,18 @@ const routes: Routes = [
   {
     path: 'form-module',
     loadChildren: () => import('./form-module/form-module.module').then( m => m.FormModulePageModule)
+  },
+  {
+    path: 'liste-specialite',
+    loadChildren: () => import('./specialite/liste-specialite/liste-specialite.module').then( m => m.ListeSpecialitePageModule)
+  },
+  {
+    path: 'detail-specialite',
+    loadChildren: () => import('./specialite/detail-specialite/detail-specialite.module').then( m => m.DetailSpecialitePageModule)
+  },
+  {
+    path: 'form-specialite',
+    loadChildren: () => import('./specialite/form-specialite/form-specialite.module').then( m => m.FormSpecialitePageModule)
   }
 ];
 

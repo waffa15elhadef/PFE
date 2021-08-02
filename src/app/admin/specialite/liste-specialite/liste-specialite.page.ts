@@ -1,30 +1,31 @@
-import { EnseignantService } from './../../../shared/services/enseignant.service';
+import { FormSpecialitePage } from './../form-specialite/form-specialite.page';
+import { SpecialiteService } from './../../../../shared/services/specialite.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { FormEnseignantPage } from '../form-enseignant/form-enseignant.page';
 
 @Component({
-  selector: 'app-listes-enseignants',
-  templateUrl: './listes-enseignants.page.html',
-  styleUrls: ['./listes-enseignants.page.scss'],
+  selector: 'app-liste-specialite',
+  templateUrl: './liste-specialite.page.html',
+  styleUrls: ['./liste-specialite.page.scss'],
 })
-export class ListesEnseignantsPage implements OnInit {
+export class ListeSpecialitePage implements OnInit {
+
   constructor(
     private router: Router,
-    private enseignantService: EnseignantService,
+    private specialiteService: SpecialiteService,
     private alertController: AlertController,
     private modalController: ModalController,
     private actionSheetController: ActionSheetController
   ) {}
 
-  enseignants = [];
-  filtredEnseignants = [];
+  specialites = [];
+  filtredSpecialites = [];
   ngOnInit() {
-    this.enseignantService.getAll().subscribe((res: any) => {
-      this.enseignants = res;
-      this.filtredEnseignants = res;
+    this.specialiteService.getAll().subscribe((res: any) => {
+      this.specialites = res;
+      this.filtredSpecialites = res;
     });
   }
   displayMenu(id) {
@@ -51,7 +52,7 @@ export class ListesEnseignantsPage implements OnInit {
           text: 'Display',
           icon: 'eye-outline',
           handler: () => {
-            this.router.navigate(["/admin/detail-enseignant",id])
+            this.router.navigate(["/admin/detail-specialite",id])
           },
         },
         {
@@ -71,12 +72,9 @@ export class ListesEnseignantsPage implements OnInit {
   }
  
   delete(id) {
-    this.enseignantService.delete(id).subscribe((res) => {
+    this.specialiteService.delete(id).subscribe((res) => {
       if (res != null) {
-        let index = this.enseignants.findIndex(d => d.id_enseignant === id); //find index in your array
-        if (index > -1) {
-          this.enseignants.splice(index, 1);
-        }
+       this.doRefresh()
       }
     });
   }
@@ -112,10 +110,10 @@ export class ListesEnseignantsPage implements OnInit {
   }
   async presentModal(id) {
     const modal = await this.modalController.create({
-      component: FormEnseignantPage,
+      component: FormSpecialitePage,
       swipeToClose: true,
       componentProps: {
-        enseignantId: id,
+        specialiteId: id,
       },
     });
 
@@ -130,8 +128,8 @@ export class ListesEnseignantsPage implements OnInit {
   doRefresh() {
 
     setTimeout(() => {
-  this.enseignants=[];
-this.enseignantService.getAll().subscribe(res=>{this.enseignants=res; this.filtredEnseignants=res;})
+  this.specialites=[];
+this.specialiteService.getAll().subscribe(res=>{this.specialites=res; this.filtredSpecialites=res;})
 //event.target.complete();
     }, 2000);
   }
@@ -141,12 +139,13 @@ this.enseignantService.getAll().subscribe(res=>{this.enseignants=res; this.filtr
   searchStudent(data){
     var query=data.target.value;
     if (!query) { // revert back to the original array if no query
-      this.filtredEnseignants = [...this.enseignants];
+      this.filtredSpecialites = [...this.specialites];
     } else { // filter array by query
-      this.filtredEnseignants = this.enseignants.filter((e) => {
+      this.filtredSpecialites = this.specialites.filter((e) => {
         return (e.nom.includes(query) );
       })
     }
    
   }
+
 }

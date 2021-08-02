@@ -8,9 +8,11 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class EnseignantService {
+export class SpecialiteService {
+  
+  
 
-  SERVER = 'http://localhost/PFE/api/enseignant/';
+  SERVER = 'http://localhost/PFE/api/specialite/';
 
   
   constructor(private httpClient: HttpClient) {}
@@ -30,4 +32,5 @@ export class EnseignantService {
   edit(etudiant){
     return this.httpClient.put(this.SERVER+"update/", etudiant)
   }
+
 }

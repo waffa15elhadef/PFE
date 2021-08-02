@@ -22,7 +22,6 @@ export class DetailEnseignantPage implements OnInit {
     if (this.id_enseignant != null && this.id_enseignant != "undefined")
     {
       this.enseignantService.getById(this.id_enseignant).subscribe((res) => {
-        console.log(res)
         this.enseignant = res;
       });
     } 
