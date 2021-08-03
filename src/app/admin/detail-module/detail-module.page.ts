@@ -1,5 +1,6 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ModuleService } from 'src/shared/services/module.service';
 
 @Component({
   selector: 'app-detail-module',
@@ -8,11 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailModulePage implements OnInit {
 
-  constructor( private router:Router) { }
+  module:any = {};
+  id_module;
+
+  constructor(
+    private route: ActivatedRoute,
+    private moduleService: ModuleService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.id_module = this.route.snapshot.params['id'];
+    if (this.id_module != null && this.id_module != "undefined")
+    {
+      this.moduleService.getById(this.id_module).subscribe((res) => {
+        this.module = res;
+      });
+    } 
+    else{
+        this.router.navigate(['/admin/listes-modules'])
+     }
   }
-onClick(){ this.router.navigate(['admin/contenu-module'])
+  
 
 }
-}
+

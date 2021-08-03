@@ -46,7 +46,7 @@ const routes: Routes = [
     path: 'admin/etudiant/form-etudiant',
     loadChildren: () => import('./admin/etudiants/form-etudiant/form-etudiant.module').then( m => m.FormEtudiantPageModule)
   },{
-    path: 'admin/detail-module',
+    path: 'admin/detail-module/:id',
     loadChildren: () => import('./admin/detail-module/detail-module.module').then( m => m.DetailModulePageModule)
   },
   {

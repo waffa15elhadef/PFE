@@ -28,9 +28,11 @@ export class ListeSpecialitePage implements OnInit {
       this.filtredSpecialites = res;
     });
   }
+  
   displayMenu(id) {
     this.presentActionSheet(id);
   }
+
   async presentActionSheet(id) {
     const actionSheet = await this.actionSheetController.create({
       buttons: [
@@ -83,7 +85,7 @@ export class ListeSpecialitePage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
-      message: 'Message <strong>text</strong>!!!',
+      message: 'Etes vous sur de vouloir supprimer cet element!!!',
       buttons: [
         {
           text: 'Cancel',
@@ -108,6 +110,7 @@ export class ListeSpecialitePage implements OnInit {
   showModal(id) {
     this.presentModal(id);
   }
+
   async presentModal(id) {
     const modal = await this.modalController.create({
       component: FormSpecialitePage,
@@ -133,8 +136,6 @@ this.specialiteService.getAll().subscribe(res=>{this.specialites=res; this.filtr
 //event.target.complete();
     }, 2000);
   }
-
-
 
   searchStudent(data){
     var query=data.target.value;
