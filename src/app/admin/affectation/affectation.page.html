@@ -18,10 +18,52 @@
   </ion-item>
   
    
-    
-      <ion-item *ngFor="let specialite of specialites"  [routerLink]="['/admin/affectation-form',specialite.id]">
-        <ion-label> {{specialite.nom}}  </ion-label>
+  <form (ngSubmit)="submit()" [formGroup]="affectationForm">
+    <ion-item lines="full">
+   
+
+        <ion-label>Enseignants</ion-label>
+        <ion-select placeholder="Enseignants" formControlName="id_enseignant" >
+          <ion-select-option [value]=enseignant.id_enseignant *ngFor="let enseignant of enseignants"  >{{enseignant.nom}}</ion-select-option>
+          
+        </ion-select>
       </ion-item>
+
+    <!-- hadi validation -->
+
+    <ion-item *ngIf="Id_enseignant.touched && Id_enseignant.invalid " lines="none">
+      <ion-label color="danger" *ngIf="Id_enseignant.errors.required">
+        Error <strong>Enseignant Obligatoire </strong>
+      </ion-label>
   
+    </ion-item>
+ 
+
+
+<ion-item>
+  <ion-label>Modules</ion-label>
+
+  <ion-select placeholder="Modules" formControlName="id_module" >
+
+    <ion-select-option [value]=module.id_module *ngFor="let module of modules"  >{{module.nom}}</ion-select-option>
+    
+  </ion-select>
+</ion-item>
+
+<ion-item *ngIf="Id_module.touched && Id_module.invalid " lines="none">
+  <ion-label color="danger" *ngIf="Id_module.errors.required">
+    Error <strong>Module Obligatoire </strong>
+  </ion-label>
+
+</ion-item>
+
+
+<ion-row>
+  <ion-col>
+    <ion-button [disabled]="!affectationForm.valid" type="submit" color="primary" expand="block">{{title}}</ion-button>
+  </ion-col>
+</ion-row>
+</form>
+
   </ion-content>
   

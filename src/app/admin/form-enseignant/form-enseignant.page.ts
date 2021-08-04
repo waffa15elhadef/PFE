@@ -98,6 +98,9 @@ export class FormEnseignantPage implements OnInit {
       'dismissed': true
     });
   }
+// cette fonction s'execute lorsqu'on click sur le bouton du formulaire, dans le cas d'une modification , on appel la fonction update du service pour mettre a jour l'objet
+// dans le cas ou l'id passé en parametre es différent de null c'est une modification sinon c'est une création d'un nouvel objet
+
 
   submit() {
     this.enseignant.nom = this.enseignantForm.get('nom').value;

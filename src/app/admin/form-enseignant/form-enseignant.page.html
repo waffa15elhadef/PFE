@@ -10,7 +10,6 @@
 </ion-header>
 
 <ion-content>
-
   <form (ngSubmit)="submit()" [formGroup]="enseignantForm">
     <ion-item lines="full">
       <ion-label position="floating">Nom</ion-label>
@@ -27,6 +26,8 @@
       <ion-label position="floating">Prenom</ion-label>
       <ion-input type="text" formControlName="prenom"></ion-input>
     </ion-item>
+
+  <!-- hadi validation -->
     <ion-item *ngIf=" Prenom.touched && Prenom.invalid " lines="none">
       <ion-label color="danger" *ngIf="Prenom.errors.required">
         Error <strong>Prenom Obligatoire </strong>
