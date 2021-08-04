@@ -19,6 +19,7 @@ export class ListeModulesPage implements OnInit {
   filtredModules=[];
   ngOnInit() {
     this.moduleService.getAll().subscribe((res: any) => {
+      console.log(res)
       this.modules = res;
       this.filtredModules = res;
     });

@@ -83,7 +83,6 @@ export class FormEnseignantPage implements OnInit {
   get Mot_de_passe() {
     return this.enseignantForm.get('mot_de_passe');
   }
-
   get Matricule() {
     return this.enseignantForm.get('matricule');
   }

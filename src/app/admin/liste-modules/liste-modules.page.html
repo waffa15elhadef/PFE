@@ -12,8 +12,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar ></ion-searchbar>
-
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar   debounce="500"
+  (ionInput)="searchStudent($event)"></ion-searchbar>
   <div  *ngIf="filtredModules != null && filtredModules.length>0;else noRes">
     <ion-list>
       <ion-item *ngFor="let module of filtredModules"  (press)="displayMenu(module.id_module)" [routerLink]="['/admin/detail-module',module.id_module]" >
@@ -47,7 +50,7 @@
     <ion-fab-list side="top">
 
 
-      <ion-fab-button color="primary" data-desc="Nouvel module" [routerLink]="['/admin/form-module']"> 
+      <ion-fab-button color="primary" data-desc="Nouvel module" (click)="showModal()"> 
         <ion-icon name="reorder-four-outline"></ion-icon>
       </ion-fab-button>
 

@@ -1,56 +1,84 @@
 
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button
-              [text]="return"
-              [icon]="arrow">
-          </ion-back-button>
-        </ion-buttons>
-        <ion-title>Formulaire Module </ion-title>
-  </ion-toolbar>
-</ion-header>
+      <ion-header>
+        <ion-toolbar>
+        
+      <ion-title>{{title}} module</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="close()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">intitulé</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Coefficient</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-item>
-      <ion-label >Specialité</ion-label>
-      <ion-select ok-text="Okay" cancel-text="Annuler">
-        <ion-select-option *ngFor="let item of specialites"  >{{item}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-item>
-  
-  <ion-item>
-    <ion-item>
-      <ion-label >Enseignant</ion-label>
-      <ion-select ok-text="Okay" cancel-text="Annuler">
-        <ion-select-option *ngFor="let enseignant of enseignants"  >{{enseignant}}</ion-select-option>
-     
-      </ion-select>
-    </ion-item>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label position="floating">Chapitre</ion-label>
-    <ion-input ></ion-input>
-  </ion-item>
-
  
+  <form (ngSubmit)="submit()" [formGroup]="moduleForm">
+    <ion-item lines="full">
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input type="text" formControlName="nom"></ion-input>
+    </ion-item>
+    <ion-item *ngIf=" Nom.touched && Nom.invalid " lines="none">
+      <ion-label color="danger" *ngIf="Nom.errors.required">
+        Error <strong>Nom Obligatoire </strong>
+      </ion-label>
+  
+    </ion-item>
+  
+    <ion-item lines="full">
+      <ion-label position="floating">Semestre</ion-label>
+      <ion-input type="text" formControlName="semestre"></ion-input>
+    </ion-item>
+    <ion-item *ngIf=" Semestre.touched && Semestre.invalid " lines="none">
+      <ion-label color="danger" *ngIf="Semestre.errors.required">
+        Error <strong>Semestre Obligatoire </strong>
+      </ion-label>
+    </ion-item>
+  
+   
+    <ion-item lines="full">
+      <ion-label position="floating">Credit</ion-label>
+      <ion-input type="text" formControlName="credit"></ion-input>
+    </ion-item>
+    <ion-item *ngIf=" Credit.touched && Credit.invalid " lines="none">
+      <ion-label color="danger" *ngIf="Credit.errors.required">
+        Credit <strong>Email required</strong>
+      </ion-label>  
+    </ion-item>
+  
+    
+    <ion-item lines="full">
+      <ion-label position="floating">Coefficient</ion-label>
+      <ion-input type="text" formControlName="coefficient"></ion-input>
+    </ion-item>
+    <ion-item *ngIf=" Coefficient.touched && Coefficient.invalid " lines="none">
+      <ion-label color="danger" *ngIf="Coefficient.errors.required">
+        Erreur <strong>Cofficient required</strong>
+      </ion-label>  
+    </ion-item>
+    
+  
+    <ion-item lines="full">
+      <ion-label position="floating">Specialite</ion-label>
+
+      <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="id_specialite">
+        <ion-select-option value=""></ion-select-option>
+        <ion-select-option *ngFor="let specialite of specialites"  [value]=specialite.id_specialite>{{specialite.nom}}</ion-select-option>
+        
+      </ion-select>
+        </ion-item>
+    <ion-item *ngIf=" Coefficient.touched && Coefficient.invalid " lines="none">
+      <ion-label color="danger" *ngIf="Coefficient.errors.required">
+        Erreur <strong>Cofficient required</strong>
+      </ion-label>  
+    </ion-item>
+    
+
+
     <ion-row>
       <ion-col>
-        <ion-button  type="submit" color="primary" expand="block">Submit</ion-button>
+        <ion-button [disabled]="!moduleForm.valid" type="submit" color="primary" expand="block">{{title}}</ion-button>
       </ion-col>
-    </ion-row>  
+    </ion-row>
+  </form>
+
 </ion-content>
 
