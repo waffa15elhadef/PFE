@@ -142,7 +142,7 @@ this.moduleService.getAll().subscribe(res=>{this.modules=res; this.filtredModule
       this.filtredModules = [...this.modules];
     } else { // filter array by query
       this.filtredModules = this.modules.filter((e) => {
-        return (e.nom.includes(query) );
+        return (e.intitule.includes(query) );
       })
     }
    

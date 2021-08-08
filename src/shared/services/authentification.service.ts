@@ -10,60 +10,43 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthentificationService {
-  SERVER = 'http://localhost:8080/api/';
-  subject = new Subject<User>();
-  private token = localStorage.getItem('ACCESS_TOKEN');
-  user: User;
-
-  private headers: HttpHeaders = new HttpHeaders({ "x-access-token": this.token });
-
-  Logout(): void {
-    localStorage.removeItem('ACCESS_TOKEN');
+  SERVER = 'http://localhost/PFE/api/utilisateur/';
+role=new Subject<number>();
+  logout(): void {
     localStorage.removeItem('ID_USER');
+    localStorage.removeItem('USER_ROLE');
     this.router.navigate(['/login']);
+    this.role.next(-1)
   }
 
-  Login(user: User): Observable<any> {
+  login(user): Observable<any> {
     return this.http
-      .post<string>(this.SERVER+'auth/signin', user)
+      .post(this.SERVER+'login', user)
       .pipe(
         map((res: any) => {
-          this.saveToken(res.accessToken);
           if (res != null) {
-            this.getUserById().subscribe(result=>{
-              this.user=result;
-              this.subject.next(this.user); 
-            })
-             
-            
+            this.role.next(res.role);
+            this.saveToken(res);
           }
-          return res;
         })
       );
   }
 
 
   getUserById(): Observable<User> {
-   return this.http.get<User>(this.SERVER+"user",{headers:this.headers});
+   return this.http.get<User>(this.SERVER+"user");
   }
-  private saveToken(token: string): void {
-    localStorage.setItem('ACCESS_TOKEN', token);
-    localStorage.setItem('ID_USER', this.parseJwt(token).id);
-  }
-
-  private parseJwt(token) {
-    if (token != 'null') {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace('-', '+').replace('_', '/');
-      return JSON.parse(window.atob(base64));
-    }
-    return -1;
+  private saveToken(res: any): void {
+    localStorage.setItem('USER_ROLE', res.role);
+    localStorage.setItem('ID_USER', res.id_utilisateur);
   }
 
-  getToken(): string {
-    this.token = localStorage.getItem('ACCESS_TOKEN');
+ 
 
-    return this.token;
+  getRole(): string {
+    var role = localStorage.getItem('USER_ROLE');
+
+    return role
   }
 
   getID(): string {
@@ -72,10 +55,24 @@ export class AuthentificationService {
 
   isLogged(): boolean {
     return (
-      this.getToken() != null &&
-      this.getID() != null &&
-      this.getID() == this.parseJwt(this.getToken()).id
-    );
+      this.getRole() != null &&
+      this.getID() != null );
+    
   }
   constructor(private http: HttpClient, private router: Router) {}
+
+
+  
+  // constructor(private httpClient: HttpClient) {}
+
+  // getAll(): Observable<any[]> {
+  //   return this.httpClient.get<any[]>(this.SERVER + 'getAll');
+  // }
+  // getById(id: number): Observable<any> {
+  //   return this.httpClient.get<any>(this.SERVER + 'getById/?id=' + id);
+  // }
+  // login(etudiant) {
+  //   return this.httpClient.post(this.SERVER + 'login', etudiant,{responseType: 'text'});
+  // }
+ 
 }

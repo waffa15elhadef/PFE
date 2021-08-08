@@ -2,24 +2,22 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/shared/models/user';
 import { ToastController } from '@ionic/angular';
-import { AuthentificationService } from 'src/shared/services/authentification.service';
-
+import { Role } from '../../shared/models/role';
+import { AuthentificationService } from '../../shared/services/authentification.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  user: User = { username: '', password: '', name: '', email: '', roles: [] };
   userForm: FormGroup;
   constructor(
     private router: Router,
     private authentificationService: AuthentificationService,
     private toastController: ToastController
   ) {}
-
+  user: any = {};
   ngOnInit() {
     this.userForm = new FormGroup({
       username: new FormControl(null, [Validators.required]),
@@ -36,31 +34,19 @@ export class LoginPage implements OnInit {
   login() {
     this.user.username = this.userForm.get('username').value;
     this.user.password = this.userForm.get('password').value;
-    // let color = '';
-    // let message = '';
-    // this.authentificationService.Login(this.user).subscribe((res) => {
-    //   this.authentificationService.subject.subscribe((res) => {
-    //     if (
-    //       this.authentificationService.user != null &&
-    //       this.authentificationService.user != undefined
-    //     ) {
-    //       this.user = this.authentificationService.user;
-    //     }
+    this.authentificationService.login(this.user).subscribe((res) => {
+      console.log('res', res);
+    });
+    let color = '';
+    let message = '';
+    this.authentificationService.login(this.user).subscribe();
+    var userRrole = this.authentificationService.getRole();
 
-    //     this.user.roles.filter((r) => {
-    //       if (r.name == 'ADMIN') {
-    //         this.router.navigate(['admin/home']);
-    //       }
-    //     });
-    //   });
-    // });
-if(this.userForm.get('username').value==="admin"){
-  this.router.navigate(['admin/home']);
-}
-if(this.userForm.get('username').value==="enseignant"){
-  this.router.navigate(['enseignant/home']);
-}
-
+    if (parseInt(userRrole) === Role.admin) {
+      this.router.navigate(['/admin/home']);
+    }else if (parseInt(userRrole) === Role.enseignant) {
+        this.router.navigate(['/enseignant/home']);
+    }
   }
   async presentToast(message: string, color) {
     const toast = await this.toastController.create({

@@ -12,13 +12,11 @@
       <ion-content>
         <ion-list id="inbox-list">
           <ion-item-divider>
-            <ion-label>
-              Admin
-            </ion-label>
           </ion-item-divider>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of [1]; let i = index">
-            <ion-list>
+            <!-- role==1==>admin -->
+            <ion-list *ngIf="role==1" >
             
              
               <ion-item   [routerLink]="['/admin/home']">
@@ -58,12 +56,41 @@
                 Bilan
               </ion-item> 
             </ion-list>
+
+             <!-- role==2==>enseignant -->
+             <ion-list *ngIf="role==2" >
+            
+             
+              <ion-item   [routerLink]="['/enseignant/home']">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+
+                Acceuil
+              </ion-item>
+             
+
+              <ion-item-divider>
+                <ion-label>
+                  Menu Ensiegnant
+                </ion-label>
+              </ion-item-divider>
+
+              <ion-item   [routerLink]="['/enseignant/bilan']">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+    
+                Bilan
+              </ion-item> 
+            </ion-list>
           </ion-menu-toggle>
               
 
        
              
         </ion-list>
+        <ion-item   (click)="logout()">
+          <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+
+          Logout
+        </ion-item> 
         </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

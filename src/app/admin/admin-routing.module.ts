@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'form-specialite',
     loadChildren: () => import('./specialite/form-specialite/form-specialite.module').then( m => m.FormSpecialitePageModule)
+  },
+  {
+    path: 'chapitre',
+    loadChildren: () => import('./chapitre/chapitre.module').then( m => m.ChapitrePageModule)
   }
 ];
 

@@ -22,7 +22,7 @@ export class EnseignantService {
     return this.httpClient.get<any>(this.SERVER + 'getById/?id=' + id);
   }
   create(etudiant) {
-    return this.httpClient.post(this.SERVER + 'create', etudiant,{responseType: 'text'});
+    return this.httpClient.post(this.SERVER + 'create', etudiant);
   }
   delete(id) {
     return this.httpClient.delete(this.SERVER + 'delete/?id='+id );

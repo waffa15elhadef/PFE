@@ -20,7 +20,7 @@
   <div  *ngIf="filtredModules != null && filtredModules.length>0;else noRes">
     <ion-list>
       <ion-item *ngFor="let module of filtredModules"  (press)="displayMenu(module.id_module)" [routerLink]="['/admin/detail-module',module.id_module]" >
-        <ion-label>{{module.nom}} </ion-label>
+        <ion-label>{{module.intitule}} </ion-label>
       </ion-item>
      
     
