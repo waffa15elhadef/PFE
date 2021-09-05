@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class AuthentificationService {
   SERVER = 'http://localhost/PFE/api/utilisateur/';
 role=new Subject<number>();
+userId=new Subject<number>();
   logout(): void {
     localStorage.removeItem('ID_USER');
     localStorage.removeItem('USER_ROLE');
@@ -25,6 +26,7 @@ role=new Subject<number>();
       .pipe(
         map((res: any) => {
           if (res != null) {
+            this.userId.next(res.id_utilisateur)
             this.role.next(res.role);
             this.saveToken(res);
           }

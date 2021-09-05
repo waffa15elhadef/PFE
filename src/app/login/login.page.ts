@@ -36,17 +36,17 @@ export class LoginPage implements OnInit {
     this.user.password = this.userForm.get('password').value;
     this.authentificationService.login(this.user).subscribe((res) => {
       console.log('res', res);
+      var userRrole = this.authentificationService.getRole();
+
+      if (parseInt(userRrole) === Role.admin) {
+        this.router.navigate(['/admin/home']);
+      }else if (parseInt(userRrole) === Role.enseignant) {
+          this.router.navigate(['/enseignant/bilan']);
+      }
     });
     let color = '';
     let message = '';
-    this.authentificationService.login(this.user).subscribe();
-    var userRrole = this.authentificationService.getRole();
-
-    if (parseInt(userRrole) === Role.admin) {
-      this.router.navigate(['/admin/home']);
-    }else if (parseInt(userRrole) === Role.enseignant) {
-        this.router.navigate(['/enseignant/home']);
-    }
+   
   }
   async presentToast(message: string, color) {
     const toast = await this.toastController.create({
