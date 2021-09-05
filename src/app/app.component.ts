@@ -1,7 +1,9 @@
+import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthentificationService } from 'src/shared/services/authentification.service';
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { EnseignantService } from '../shared/services/enseignant.service';
+import { AuthentificationService } from '../shared/services/authentification.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private route:Router,private menu: MenuController,private authentificationService:AuthentificationService) { }
+  constructor(private enseignantService:EnseignantService,private route:Router,private menu: MenuController,private authentificationService:AuthentificationService) { }
 role;
 id;
   ngOnInit(){
@@ -35,7 +37,11 @@ logout(){
 
 }
        goToDetails(){
-        this.route.navigate(['admin/detail-enseignant',this.id])
+         this.enseignantService.getByUserId(this.id).subscribe(res=>{
+           console.log(res,"rr")
+          this.route.navigate(['admin/detail-enseignant',res.id_enseignant])
+
+         })
        }
   
 

@@ -28,7 +28,6 @@ export class FormModulePage implements OnInit {
   specialites=[]
   ngOnInit() {
 this.specialiteService.getAll().subscribe(res=>{
-  console.log(res)
   this.specialites=res;
 })
     this.moduleForm = new FormGroup({
@@ -48,9 +47,9 @@ this.specialiteService.getAll().subscribe(res=>{
       this.moduleService
         .getById(parseInt(this.moduleId))
         .subscribe((res) => {
-          console.log(this.moduleId,"m");
+          console.log(res,"m");
           
-          this.moduleForm.get('nom').setValue(res.nom);
+          this.moduleForm.get('nom').setValue(res.intitule);
           this.moduleForm.get('semestre').setValue(res.semestre);
           this.moduleForm.get('coefficient').setValue(res.coefficient);
           this.moduleForm.get('credit').setValue(res.credit);
@@ -85,7 +84,7 @@ this.specialiteService.getAll().subscribe(res=>{
   }
 
   submit() {
-    this.module.nom = this.moduleForm.get('nom').value;
+    this.module.intitule = this.moduleForm.get('nom').value;
     this.module.semestre = this.moduleForm.get('semestre').value;
     this.module.credit = this.moduleForm.get('credit').value;
     this.module.id_specialite = this.moduleForm.get('id_specialite').value;

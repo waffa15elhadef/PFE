@@ -21,6 +21,10 @@ export class EnseignantService {
   getById(id: number): Observable<any> {
     return this.httpClient.get<any>(this.SERVER + 'getById/?id=' + id);
   }
+
+  getByUserId(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.SERVER + 'getByUserId/?id=' + id);
+  }
   create(etudiant) {
     
     return this.httpClient.post(this.SERVER + 'create', etudiant);

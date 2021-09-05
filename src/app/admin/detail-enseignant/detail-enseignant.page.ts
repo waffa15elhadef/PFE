@@ -1,3 +1,4 @@
+import { UserService } from './../../../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnseignantService } from 'src/shared/services/enseignant.service';
@@ -10,11 +11,12 @@ import { EnseignantService } from 'src/shared/services/enseignant.service';
 export class DetailEnseignantPage implements OnInit {
   enseignant:any = {};
   id_enseignant;
-
+user:any={};
   constructor(
     private route: ActivatedRoute,
     private enseignantService: EnseignantService,
-    private router: Router
+    private router: Router,
+    private userService:UserService
   ) {}
 
   ngOnInit() {
@@ -23,6 +25,9 @@ export class DetailEnseignantPage implements OnInit {
     {
       this.enseignantService.getById(this.id_enseignant).subscribe((res) => {
         this.enseignant = res;
+        this.userService.getById(res.id_utilisateur).subscribe(user=>{
+          this.user=user;
+        })
       });
     } 
     else{

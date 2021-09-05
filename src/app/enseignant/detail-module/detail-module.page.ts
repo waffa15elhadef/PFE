@@ -1,6 +1,7 @@
+import { ModuleService } from '../../../shared/services/module.service';
+import { SpecialiteService } from './../../../shared/services/specialite.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EtudiantService } from '../../../shared/services/etudiant.service';
 
 @Component({
   selector: 'app-detail-module',
@@ -9,12 +10,13 @@ import { EtudiantService } from '../../../shared/services/etudiant.service';
 })
 export class DetailModulePage implements OnInit {
 
-  constructor(private route:ActivatedRoute,private etudiantService:EtudiantService){}
+  constructor(private route:ActivatedRoute,private moduleService:ModuleService){}
 
   idSpecialite:number;
-  specialite:any={"nom":"MI","modules":[{"id":1,"nom":"BDD"},{"id":2,"nom":"reseau"},{"id":3,"nom":"GL"}]}
   ngOnInit() {
   this.idSpecialite=  this.route.snapshot.params['id']
- 
+ this.moduleService.getModuleBySpecialite(this.idSpecialite).subscribe(res=>{
+   console.log(res)
+ })
   }
 }

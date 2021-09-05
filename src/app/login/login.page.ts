@@ -35,6 +35,7 @@ export class LoginPage implements OnInit {
     this.user.username = this.userForm.get('username').value;
     this.user.password = this.userForm.get('password').value;
     this.authentificationService.login(this.user).subscribe((res) => {
+      this.presentToast("Logged in successfully","primary")
       console.log('res', res);
       var userRrole = this.authentificationService.getRole();
 
@@ -43,6 +44,8 @@ export class LoginPage implements OnInit {
       }else if (parseInt(userRrole) === Role.enseignant) {
           this.router.navigate(['/enseignant/bilan']);
       }
+    },(err)=>{
+      this.presentToast("Login failed","danger");
     });
     let color = '';
     let message = '';
