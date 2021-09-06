@@ -1,3 +1,4 @@
+import { UserService } from './../../../shared/services/user.service';
 import { EnseignantService } from 'src/shared/services/enseignant.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,15 +13,18 @@ export class FormEnseignantPage implements OnInit {
   constructor(
     public toastController: ToastController,
     private modalCtrl: ModalController,
-    private enseignantService: EnseignantService
+    private enseignantService: EnseignantService,
+    private userService:UserService
   ) {}
 
   @Input() enseignantId: string;
 
+  estChefDepartement=false;
   title = 'Create';
   enseignantForm: FormGroup;
   listeEnseignants = [];
   enseignant: any = {};
+  user:any={};
   ngOnInit() {
     this.enseignantForm = new FormGroup({
       nom: new FormControl(null, [Validators.required]),
@@ -116,17 +120,31 @@ export class FormEnseignantPage implements OnInit {
     this.enseignant.mot_de_passe =
       this.enseignantForm.get('mot_de_passe').value;
     this.enseignant.email = this.enseignantForm.get('email').value;
+  
     if (
       this.enseignantId == '' ||
       this.enseignantId == null ||
       this.enseignantId == undefined
     ) {
-      this.enseignantService.create(this.enseignant).subscribe((res) => {
-        if (res != null) {
-          console.log(res);
-          this.presentToastWithOptions('Created');
-        }
-      });
+      
+      this.user.username=this.enseignantForm.get('username').value;
+      this.user.password=this.enseignantForm.get('mot_de_passe').value;
+     
+      if(this.estChefDepartement){
+        this.user.role=1;
+      }else{
+        this.user.role=2;
+      }
+      this.userService.create(this.user).subscribe(res=>{
+       this.enseignant.id_utilisateur=res;
+        this.enseignantService.create(this.enseignant).subscribe((res) => {
+          if (res != null) {
+            console.log(res);
+            this.presentToastWithOptions('Created');
+          }
+        });
+      })
+     
     } else {
       this.enseignant.id_enseignant = this.enseignantId;
       this.enseignantService.edit(this.enseignant).subscribe(
@@ -156,5 +174,9 @@ export class FormEnseignantPage implements OnInit {
   formatDate(date) {
     let birthday = new Date(date);
     return birthday.toISOString().split('T')[0];
+  }
+  changed(e){
+    console.log(e);
+    this.estChefDepartement=!this.estChefDepartement;
   }
 }

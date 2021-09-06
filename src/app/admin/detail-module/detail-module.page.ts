@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ModuleService } from 'src/shared/services/module.service';
+import { ModuleService } from '../../../shared/services/module.service';
 
 @Component({
   selector: 'app-detail-module',

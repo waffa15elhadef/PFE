@@ -13,7 +13,7 @@
 
  
   
-    <ion-item *ngFor="let specialite of specialites"  [routerLink]="['/enseignant/detail-module',specialite.id]">
+    <ion-item *ngFor="let specialite of specialites"  [routerLink]="['/enseignant/detail-module',specialite.id_specialite]">
       <ion-label> {{specialite.nom}}  </ion-label>
     </ion-item>
 

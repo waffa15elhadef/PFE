@@ -1,9 +1,9 @@
 <ion-app>
-  <ion-buttons slot="start">
+  <ion-buttons slot="start" *ngIf="role!=null && role!= -1">
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" >
+    <ion-menu contentId="main-content" type="overlay"  >
       <ion-header>
         <ion-toolbar color="primary">
           <ion-title>Menu</ion-title>
@@ -31,7 +31,7 @@
                 Enseignant
               </ion-item>
               
-              <ion-item>
+              <ion-item  [routerLink]="['/admin/specialite']">
                 <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
 
                 Spécialité
@@ -61,11 +61,7 @@
              <ion-list *ngIf="role==2" >
             
              
-              <ion-item   [routerLink]="['/enseignant/home']">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
-
-                Acceuil
-              </ion-item>
+              
              
 
               <ion-item-divider>
@@ -74,11 +70,16 @@
                 </ion-label>
               </ion-item-divider>
 
+              <ion-item  (click)="goToDetails()">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+    
+                Profil
+              </ion-item> 
               <ion-item   [routerLink]="['/enseignant/bilan']">
                 <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
     
                 Bilan
-              </ion-item> 
+              </ion-item>
             </ion-list>
           </ion-menu-toggle>
               

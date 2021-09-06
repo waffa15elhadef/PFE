@@ -1,3 +1,4 @@
+import { SpecialiteService } from './../../../shared/services/specialite.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bilan.page.scss'],
 })
 export class BilanPage implements OnInit {
-
-  constructor() { }
-  specialites=[{"id":1,"nom":"MI"},{"id":2,"nom":"SI"},{"id":3,"nom":"ISIA"}]
+  specialites=[];
+  constructor(private specialiteService:SpecialiteService) { }
   ngOnInit() {
+this.specialiteService.getAll().subscribe(res=>{this.specialites=res})
   }
 
 }
