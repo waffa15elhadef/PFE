@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthentificationService {
   SERVER = 'http://localhost/PFE/api/utilisateur/';
+  
 role=new Subject<number>();
   logout(): void {
     localStorage.removeItem('ID_USER');
