@@ -10,7 +10,7 @@ import { AuthentificationService } from '../shared/services/authentification.ser
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit { 
   constructor(private enseignantService:EnseignantService,private route:Router,private menu: MenuController,private authentificationService:AuthentificationService) { }
 role;
 id;
@@ -19,6 +19,7 @@ id;
       this.role=res;    })
       this.authentificationService.userId.subscribe(res=>{
         this.id=res;    })
+        this.role=1; 
   }
   openFirst() {
     this.menu.enable(true, 'first');

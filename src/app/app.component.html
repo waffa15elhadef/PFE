@@ -1,11 +1,11 @@
 <ion-app>
   <ion-buttons slot="start" *ngIf="role!=null && role!= -1">
-    <ion-menu-button></ion-menu-button>
+    <ion-menu-button  color="warning"></ion-menu-button>
   </ion-buttons>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay"  >
+    <ion-menu contentId="main-content" type="overlay" *ngIf="role!=null && role!= -1 " >
       <ion-header>
-        <ion-toolbar color="primary">
+        <ion-toolbar color="Warning">
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
@@ -20,25 +20,25 @@
             
              
               <ion-item   [routerLink]="['/admin/home']">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+                <ion-icon slot="start" md="home-sharp"></ion-icon>
 
-                Acceuil
+                Accueil
               </ion-item>
               
               <ion-item   [routerLink]="['/admin/listes-enseignants']">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+                <ion-icon slot="start" md="people"></ion-icon>
 
                 Enseignant
               </ion-item>
               
               <ion-item  [routerLink]="['/admin/specialite']">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+               <ion-icon slot="start" md="laptop"></ion-icon>
 
-                Spécialité
+                Filière
               </ion-item>
 
               <ion-item [routerLink]="['/admin/affectation']">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+                <ion-icon slot="start" md="caret-forward"></ion-icon>
 
                 Affectation
               </ion-item>
@@ -51,14 +51,14 @@
               </ion-item-divider>
 
               <ion-item   [routerLink]="['/enseignant/bilan']">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+                <ion-icon slot="start" md="people-circle"></ion-icon>
     
                 Bilan
               </ion-item> 
             </ion-list>
 
              <!-- role==2==>enseignant -->
-             <ion-list *ngIf="role==2" >
+             <ion-list *ngIf="role==2||role ==3" >
             
              
               

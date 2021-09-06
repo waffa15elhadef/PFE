@@ -32,7 +32,7 @@
     <!-- hadi validation -->
 
     <ion-item *ngIf="Id_enseignant.touched && Id_enseignant.invalid " lines="none">
-      <ion-label color="danger" *ngIf="Id_enseignant.errors.required">
+      <ion-label color="warning" *ngIf="Id_enseignant.errors.required">
         Error <strong>Enseignant Obligatoire </strong>
       </ion-label>
   
@@ -51,7 +51,7 @@
 </ion-item>
 
 <ion-item *ngIf="Id_module.touched && Id_module.invalid " lines="none">
-  <ion-label color="danger" *ngIf="Id_module.errors.required">
+  <ion-label color="warning" *ngIf="Id_module.errors.required">
     Error <strong>Module Obligatoire </strong>
   </ion-label>
 
@@ -60,7 +60,7 @@
 
 <ion-row>
   <ion-col>
-    <ion-button [disabled]="!affectationForm.valid" type="submit" color="primary" expand="block">{{title}}</ion-button>
+    <ion-button [disabled]="!affectationForm.valid" type="submit" color="warning" expand="block">{{title}}</ion-button>
   </ion-col>
 </ion-row>
 </form>

@@ -34,7 +34,7 @@ export class ListesEnseignantsPage implements OnInit {
     const actionSheet = await this.actionSheetController.create({
       buttons: [
         {
-          text: 'Delete',
+          text: 'Supprimer',
           role: 'destructive',
           icon: 'trash',
           handler: () => {
@@ -42,20 +42,20 @@ export class ListesEnseignantsPage implements OnInit {
           },
         },
         {
-          text: 'Edit',
+          text: 'Modifier',
           icon: 'create-outline',
           handler: () => {
             this.showModal(id);          },
         },
         {
-          text: 'Display',
+          text: 'Afficher',
           icon: 'eye-outline',
           handler: () => {
             this.router.navigate(["/admin/detail-enseignant",id])
           },
         },
         {
-          text: 'Cancel',
+          text: 'Annuler',
           icon: 'close',
           role: 'cancel',
           handler: () => {

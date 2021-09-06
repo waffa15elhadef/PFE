@@ -4,7 +4,7 @@
         
       <ion-title>{{title}} module</ion-title>
       <ion-buttons slot="end">
-        <ion-button (click)="close()">Close</ion-button>
+        <ion-button color="warning" (click)="close()">Fermer</ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -59,7 +59,7 @@
     <ion-item lines="full">
       <ion-label position="floating">Specialite</ion-label>
 
-      <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="id_specialite">
+      <ion-select value="brown" okText="Ok" cancelText="Rejeter" formControlName="id_specialite">
         <ion-select-option value=""></ion-select-option>
         <ion-select-option *ngFor="let specialite of specialites"  [value]=specialite.id_specialite>{{specialite.nom}}</ion-select-option>
         
@@ -75,7 +75,7 @@
 
     <ion-row>
       <ion-col>
-        <ion-button [disabled]="!moduleForm.valid" type="submit" color="primary" expand="block">{{title}}</ion-button>
+        <ion-button [disabled]="!moduleForm.valid" type="submit" color="warning" expand="block">{{title}}</ion-button>
       </ion-col>
     </ion-row>
   </form>

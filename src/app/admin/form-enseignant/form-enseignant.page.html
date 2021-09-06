@@ -4,7 +4,7 @@
       
     <ion-title>Nouvel Enseignant</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Close</ion-button>
+      <ion-button color="warning" (click)="close()">Fermer</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -95,33 +95,42 @@
   
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Username</ion-label>
+      <ion-label position="floating">Nom d'utilisateur</ion-label>
       <ion-input type="text" formControlName="username"></ion-input>
     </ion-item>
     <ion-item *ngIf=" Username.touched && Username.invalid " lines="none">
       <ion-label color="danger" *ngIf="Username.errors.required">
-        Error <strong>Username Obligatoire </strong>
+    Erreur <strong>Nom d'utilisateur Obligatoire </strong>
       </ion-label>
   
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Mot_de_passe</ion-label>
+      <ion-label position="floating">Mot de passe</ion-label>
       <ion-input type="text" formControlName="mot_de_passe"></ion-input>
     </ion-item>
     <ion-item *ngIf=" Mot_de_passe.touched && Mot_de_passe.invalid " lines="none">
       <ion-label color="danger" *ngIf="Mot_de_passe.errors.required">
-        Error <strong>Mot_de_passe Obligatoire </strong>
+        Error <strong>Mot de passe Obligatoire </strong>
       </ion-label>
   
     </ion-item>
   
+   
+
+
     <ion-item>
-      <ion-label>Est chef département</ion-label>
-      <ion-checkbox slot="end"  [checked]="estChefDepartement" (ionChange)="changed($event)"></ion-checkbox>
+      <ion-label position="floating">Role</ion-label>
+
+      <ion-select (ionChange)="changed($event)" okText="Ok" cancelText="Annuler">
+       
+        <ion-select-option value="2">Chef de specialité</ion-select-option>
+        <ion-select-option value="3">Chef de filière</ion-select-option>
+      </ion-select>
     </ion-item>
+
     <ion-row>
       <ion-col>
-        <ion-button [disabled]="!enseignantForm.valid" type="submit" color="primary" expand="block">{{title}}</ion-button>
+        <ion-button [disabled]="!enseignantForm.valid" type="submit" color="warning" expand="block">{{title}}</ion-button>
       </ion-col>
     </ion-row>
   </form>

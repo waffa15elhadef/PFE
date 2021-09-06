@@ -42,7 +42,7 @@ this.specialiteService.getAll().subscribe(res=>{
       this.moduleId == null ||
       this.moduleId == undefined
     ) {
-      this.title = 'Create';
+      this.title = 'Créer';
     } else {
       this.moduleService
         .getById(parseInt(this.moduleId))

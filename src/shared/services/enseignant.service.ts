@@ -26,7 +26,7 @@ export class EnseignantService {
     return this.httpClient.get<any>(this.SERVER + 'getByUserId/?id=' + id);
   }
   create(etudiant) {
-    
+    console.log(JSON.stringify(etudiant))
     return this.httpClient.post(this.SERVER + 'create', etudiant);
   }
   delete(id) {

@@ -19,7 +19,7 @@ export class FormEnseignantPage implements OnInit {
 
   @Input() enseignantId: string;
 
-  estChefDepartement=false;
+  role=2;
   title = 'Create';
   enseignantForm: FormGroup;
   listeEnseignants = [];
@@ -130,11 +130,9 @@ export class FormEnseignantPage implements OnInit {
       this.user.username=this.enseignantForm.get('username').value;
       this.user.password=this.enseignantForm.get('mot_de_passe').value;
      
-      if(this.estChefDepartement){
-        this.user.role=1;
-      }else{
-        this.user.role=2;
-      }
+      
+        this.user.role=this.role;
+      
       this.userService.create(this.user).subscribe(res=>{
        this.enseignant.id_utilisateur=res;
         this.enseignantService.create(this.enseignant).subscribe((res) => {
@@ -176,7 +174,6 @@ export class FormEnseignantPage implements OnInit {
     return birthday.toISOString().split('T')[0];
   }
   changed(e){
-    console.log(e);
-    this.estChefDepartement=!this.estChefDepartement;
+    console.log(e.detail.value);
   }
 }

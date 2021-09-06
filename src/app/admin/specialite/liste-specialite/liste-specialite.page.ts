@@ -22,6 +22,7 @@ export class ListeSpecialitePage implements OnInit {
 
   specialites = [];
   filtredSpecialites = [];
+  retour="retour";
   ngOnInit() {
     this.specialiteService.getAll().subscribe((res: any) => {
       this.specialites = res;

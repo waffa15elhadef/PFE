@@ -14,7 +14,7 @@ export class ListeModulesPage implements OnInit {
     private alertController: AlertController,
     private modalController: ModalController,
     private router:Router,private actionSheetController: ActionSheetController,private moduleService:ModuleService) {}
-
+    retour="retour";
   modules=[];
   filtredModules=[];
   ngOnInit() {
@@ -32,7 +32,7 @@ export class ListeModulesPage implements OnInit {
     const actionSheet = await this.actionSheetController.create({
       buttons: [
         {
-          text: 'Delete',
+          text: 'Supprimer',
           role: 'destructive',
           icon: 'trash',
           handler: () => {
@@ -40,20 +40,20 @@ export class ListeModulesPage implements OnInit {
           },
         },
         {
-          text: 'Edit',
+          text: 'Modifier',
           icon: 'create-outline',
           handler: () => {
             this.showModal(id);          },
         },
         {
-          text: 'Display',
+          text: 'afficher',
           icon: 'eye-outline',
           handler: () => {
             this.router.navigate(["/admin/detail-module",id])
           },
         },
         {
-          text: 'Cancel',
+          text: 'annuler',
           icon: 'close',
           role: 'cancel',
           handler: () => {

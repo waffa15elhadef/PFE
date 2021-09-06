@@ -1,64 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
-  <ion-row>
-    <ion-col [routerLink]="['/admin/liste-modules']">
-      <ion-card>
-        <ion-card-header>
-           <ion-card-title>Liste des Modules</ion-card-title>
-        </ion-card-header>
-      
-        <ion-card-content>
-         Clickez ici pour accéder a la liste des modules de votre système
-        </ion-card-content>
-      </ion-card>
-        </ion-col>
-   
-    
-   
-  </ion-row>
+  <ion-item [routerLink]="['/admin/liste-modules']">
+    <ion-avatar>
+      <img img src="assets/img/logo.jpg" />
+    </ion-avatar>
+    <ion-label> Liste des modules </ion-label>
+  </ion-item>
 
-  <ion-row>
-   
-    <ion-col  [routerLink]="['/admin/listes-enseignants']">
+  <ion-item [routerLink]="['/admin/listes-enseignants']">
+    <ion-avatar>
+      <img img src="assets/img/logoteach.PNG" />
+    </ion-avatar>
+    <ion-label> Liste des enseignants </ion-label>
+  </ion-item>
 
-      <ion-card>
-        <ion-card-header>
-           <ion-card-title>Liste des enseignants</ion-card-title>
-        </ion-card-header>
-      
-        <ion-card-content>
-         Clickez ici pour accéder a la liste des utilisateur de votre système
-        </ion-card-content>
-      </ion-card>
-        </ion-col>
-   
-  </ion-row>
-
+  <ion-item [routerLink]="['/admin/specialite']">
+    <ion-avatar>
+      <img img src="assets/img/logospec.jpg" />
+    </ion-avatar>
+    <ion-label> Liste des specialites </ion-label>
+  </ion-item>
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button color="danger" class="">
+    <ion-fab-button color="warning" class="">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
-      <ion-fab-button color="primary" data-desc="Nouvel utilisateur">
+      <ion-fab-button color="warning" data-desc="Nouvel utilisateur">
         <ion-icon name="person-add"></ion-icon>
       </ion-fab-button>
 
-      <ion-fab-button color="primary" data-desc="Nouvel module">
-        <ion-icon name="reorder-four-outline"></ion-icon>
+      <ion-fab-button color="warning" data-desc="Nouvel module">
+        <ion-icon name="book"></ion-icon>
       </ion-fab-button>
 
-      <ion-fab-button color="primary" data-desc="Nouvel spécialité">
-        <ion-icon name="reorder-four-outline"></ion-icon>
+      <ion-fab-button color="warning" data-desc="Nouvel spécialité">
+        <ion-icon name="color-filter"></ion-icon>
       </ion-fab-button>
-
-     
     </ion-fab-list>
   </ion-fab>
 </ion-content>
