@@ -30,6 +30,9 @@ export class DetailModulePage implements OnInit {
         this.router.navigate(['/admin/listes-modules'])
      }
   }
+  onClick(){
+    this.router.navigate(['/admin/contenu-module']);
+  }
   
 
 }

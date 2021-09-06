@@ -15,7 +15,7 @@
           </ion-item-divider>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of [1]; let i = index">
-            <!-- role==1==>admin -->
+            <!-- role==1==>admin chef département-->
             <ion-list *ngIf="role==1" >
             
              
@@ -57,8 +57,33 @@
               </ion-item> 
             </ion-list>
 
+             <!-- role==2==>chef de filée -->
+             <ion-list *ngIf="role==2" >
+            
+             
+              
+             
+
+              <ion-item-divider>
+                <ion-label>
+                  Menu chef de filière
+                </ion-label>
+              </ion-item-divider>
+
+              <ion-item  (click)="goToDetails()">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+    
+                Profil
+              </ion-item> 
+              <ion-item   [routerLink]="['/enseignant/bilan']">
+                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+    
+                Bilan
+              </ion-item>
+            </ion-list>
              <!-- role==2==>enseignant -->
-             <ion-list *ngIf="role==2||role ==3" >
+
+            <ion-list *ngIf="role ==3" >
             
              
               

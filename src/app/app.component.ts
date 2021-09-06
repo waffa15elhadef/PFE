@@ -19,7 +19,7 @@ id;
       this.role=res;    })
       this.authentificationService.userId.subscribe(res=>{
         this.id=res;    })
-        this.role=1; 
+        
   }
   openFirst() {
     this.menu.enable(true, 'first');

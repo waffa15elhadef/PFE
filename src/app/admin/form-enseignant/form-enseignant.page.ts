@@ -19,7 +19,7 @@ export class FormEnseignantPage implements OnInit {
 
   @Input() enseignantId: string;
 
-  role=2;
+  role=3;
   title = 'Create';
   enseignantForm: FormGroup;
   listeEnseignants = [];

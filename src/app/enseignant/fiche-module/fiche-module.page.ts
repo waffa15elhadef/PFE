@@ -12,7 +12,7 @@ export class FicheModulePage implements OnInit {
 module={"id":1,"chapitres":[
   {"id":1,"nom":"chapitre 1","realise":true},
   {"id":2,"nom":"chapitre 2","realise":true},
-  {"id":3,"nom":"chapitre 3","realise":false},
+  {"id":3,"nom":"chapitre 3","realise":true},
   {"id":4,"nom":"chapitre 4","realise":false},
 ]}
 taux="";

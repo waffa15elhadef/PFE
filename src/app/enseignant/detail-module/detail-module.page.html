@@ -1,17 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detailModule</ion-title>
-  </ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+          [text]="return"
+          [icon]="arrow">
+      </ion-back-button>
+    </ion-buttons>
+ 
+    <ion-title>Detail module</ion-title>
+</ion-toolbar>
+
+
 </ion-header>
 
 <ion-content>
-<ion-item>
-  <h1>
-  {{specialite.nom}}
 
-</h1>
-</ion-item>
-<ion-item *ngFor="let item of specialite.modules" [routerLink]="['/enseignant/fiche-module', item.id]">
-  {{item.nom}}
+<ion-item *ngFor="let item of specialite" [routerLink]="['/enseignant/fiche-module', item.id]">
+  {{item.intitule}}
  </ion-item>
 </ion-content>

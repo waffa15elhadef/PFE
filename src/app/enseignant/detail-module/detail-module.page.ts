@@ -11,12 +11,11 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailModulePage implements OnInit {
 
   constructor(private route:ActivatedRoute,private moduleService:ModuleService){}
-
+  specialite=[]
   idSpecialite:number;
   ngOnInit() {
   this.idSpecialite=  this.route.snapshot.params['id']
  this.moduleService.getModuleBySpecialite(this.idSpecialite).subscribe(res=>{
-   console.log(res)
- })
+this.specialite=res })
   }
 }

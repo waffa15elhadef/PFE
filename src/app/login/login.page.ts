@@ -32,20 +32,22 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.user.username = this.userForm.get('username').value;
-    this.user.password = this.userForm.get('password').value;
+    this.user.nom_d_utilisateur = this.userForm.get('username').value;
+    this.user.mot_de_passe = this.userForm.get('password').value;
     this.authentificationService.login(this.user).subscribe((res) => {
-      this.presentToast("Logged in successfully","primary")
+      this.presentToast("Authentification avec succées","warning")
       console.log('res', res);
       var userRrole = this.authentificationService.getRole();
 
-      if (parseInt(userRrole) === Role.admin) {
+      if (parseInt(userRrole) === Role.chef_departement) {
         this.router.navigate(['/admin/home']);
       }else if (parseInt(userRrole) === Role.enseignant) {
           this.router.navigate(['/enseignant/bilan']);
-      }
+      }else if (parseInt(userRrole) === Role.chef_filiere) {
+        this.router.navigate(['/enseignant/bilan']);
+    }
     },(err)=>{
-      this.presentToast("Login failed","danger");
+      this.presentToast("Authentification échouée","danger");
     });
     let color = '';
     let message = '';
