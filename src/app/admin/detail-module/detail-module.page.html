@@ -16,17 +16,18 @@
 <ion-content>
   <ion-item>
     <ion-label>
-      Nom module: 
+      Nom module: {{module.intitule}}
     </ion-label>
   </ion-item>
   <ion-item>
     <ion-label>
-      Description: 
+      Semestre: {{module.semestre}}
     </ion-label>
   </ion-item>
   <ion-item>
     <ion-label>
-      Contenu: 4 chapitres
+      Coefficient: {{module.coefficient}}
+
     </ion-label>
   </ion-item>
   <ion-item (click)="onClick()">

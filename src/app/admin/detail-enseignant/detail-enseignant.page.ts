@@ -9,6 +9,7 @@ import { EnseignantService } from 'src/shared/services/enseignant.service';
   styleUrls: ['./detail-enseignant.page.scss'],
 })
 export class DetailEnseignantPage implements OnInit {
+  retour="retour";
   enseignant:any = {};
   id_enseignant;
 user:any={};

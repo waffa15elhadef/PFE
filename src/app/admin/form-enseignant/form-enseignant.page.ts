@@ -21,6 +21,7 @@ export class FormEnseignantPage implements OnInit {
 
   role=3;
   title = 'Create';
+  isUpdate=false;
   enseignantForm: FormGroup;
   listeEnseignants = [];
   enseignant: any = {};
@@ -61,10 +62,15 @@ export class FormEnseignantPage implements OnInit {
           this.enseignantForm.get('matricule').setValue(res.matricule);
 
           this.enseignantForm.get('telephone').setValue(res.telephone);
-          this.enseignantForm.get('username').setValue(res.username);
-          this.enseignantForm.get('mot_de_passe').setValue(res.mot_de_passe);
+         
+      this.userService.getById(res.id_utilisateur).subscribe(res2=>{
+        this.enseignantForm.get('username').setValue(res2.nom_d_utilisateur);
+        this.enseignantForm.get('mot_de_passe').setValue(res2.mot_de_passe);
+      })
+
         });
       this.title = 'Update';
+      this.isUpdate=true;
     }
   }
 
@@ -116,28 +122,27 @@ export class FormEnseignantPage implements OnInit {
       this.enseignantForm.get('lieu_naissance').value;
     this.enseignant.matricule = this.enseignantForm.get('matricule').value;
     this.enseignant.telephone = this.enseignantForm.get('telephone').value;
-    this.enseignant.username = this.enseignantForm.get('username').value;
-    this.enseignant.mot_de_passe =
-      this.enseignantForm.get('mot_de_passe').value;
+    
     this.enseignant.email = this.enseignantForm.get('email').value;
   
+    this.user.nom_d_utilisateur=this.enseignantForm.get('username').value;
+    this.user.mot_de_passe=this.enseignantForm.get('mot_de_passe').value;
+    this.user.role=this.role;
+
     if (
       this.enseignantId == '' ||
       this.enseignantId == null ||
       this.enseignantId == undefined
     ) {
       
-      this.user.username=this.enseignantForm.get('username').value;
-      this.user.password=this.enseignantForm.get('mot_de_passe').value;
-     
       
-        this.user.role=this.role;
       
       this.userService.create(this.user).subscribe(res=>{
+
        this.enseignant.id_utilisateur=res;
-        this.enseignantService.create(this.enseignant).subscribe((res) => {
-          if (res != null) {
-            console.log(res);
+        this.enseignantService.create(this.enseignant).subscribe((res2) => {
+          if (res2 != null) {
+            console.log("res2",res2);
             this.presentToastWithOptions('Created');
           }
         });
@@ -147,6 +152,7 @@ export class FormEnseignantPage implements OnInit {
       this.enseignant.id_enseignant = this.enseignantId;
       this.enseignantService.edit(this.enseignant).subscribe(
         (res) => {
+          
           if (res) {
             console.log('res', res);
             this.presentToastWithOptions('Edited');
@@ -174,6 +180,6 @@ export class FormEnseignantPage implements OnInit {
     return birthday.toISOString().split('T')[0];
   }
   changed(e){
-    console.log(e.detail.value);
+    this.role=e.detail.value
   }
 }

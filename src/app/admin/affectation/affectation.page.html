@@ -34,7 +34,7 @@
 
     <ion-item *ngIf="Id_enseignant.touched && Id_enseignant.invalid " lines="none">
       <ion-label color="warning" *ngIf="Id_enseignant.errors.required">
-        Error <strong>Enseignant Obligatoire </strong>
+        Erreur <strong>Enseignant Obligatoire </strong>
       </ion-label>
   
     </ion-item>
@@ -46,14 +46,14 @@
 
   <ion-select placeholder="Modules" formControlName="id_module" >
 
-    <ion-select-option [value]=module.id_module *ngFor="let module of modules"  >{{module.nom}}</ion-select-option>
+    <ion-select-option [value]=module.id_module *ngFor="let module of modules"  >{{module.intitule}}</ion-select-option>
     
   </ion-select>
 </ion-item>
 
 <ion-item *ngIf="Id_module.touched && Id_module.invalid " lines="none">
   <ion-label color="warning" *ngIf="Id_module.errors.required">
-    Error <strong>Module Obligatoire </strong>
+    Erreur <strong>Module Obligatoire </strong>
   </ion-label>
 
 </ion-item>

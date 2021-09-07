@@ -24,7 +24,7 @@ export class ModuleService {
     return this.httpClient.get<any>(this.SERVER + 'getModuleBySpecialite/?id=' + id);
   }
   create(etudiant) {
-    
+    console.log(JSON.stringify(etudiant))
     return this.httpClient.post(this.SERVER + 'create', etudiant,{responseType: 'text'});
   }
   delete(id) {

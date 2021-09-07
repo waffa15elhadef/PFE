@@ -96,7 +96,7 @@
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Nom d'utilisateur</ion-label>
-      <ion-input type="text" formControlName="username"></ion-input>
+      <ion-input type="text" formControlName="username" [readonly]="isUpdate"></ion-input>
     </ion-item>
     <ion-item *ngIf=" Username.touched && Username.invalid " lines="none">
       <ion-label color="danger" *ngIf="Username.errors.required">
@@ -106,7 +106,7 @@
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Mot de passe</ion-label>
-      <ion-input type="text" formControlName="mot_de_passe"></ion-input>
+      <ion-input type="text" formControlName="mot_de_passe" [readonly]="isUpdate"></ion-input>
     </ion-item>
     <ion-item *ngIf=" Mot_de_passe.touched && Mot_de_passe.invalid " lines="none">
       <ion-label color="danger" *ngIf="Mot_de_passe.errors.required">

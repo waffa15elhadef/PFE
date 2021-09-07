@@ -28,6 +28,7 @@ export class UserService {
     return this.httpClient.delete(this.SERVER + 'delete/?id='+id );
   }
   edit(etudiant){
+    console.log(JSON.stringify(etudiant))
     return this.httpClient.put(this.SERVER+"update/", etudiant)
   }
 

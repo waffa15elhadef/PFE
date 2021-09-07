@@ -15,6 +15,7 @@ export class DetailModulePage implements OnInit {
   idSpecialite:number;
   ngOnInit() {
   this.idSpecialite=  this.route.snapshot.params['id']
+  console.log(this.idSpecialite)
  this.moduleService.getModuleBySpecialite(this.idSpecialite).subscribe(res=>{
 this.specialite=res })
   }
