@@ -71,15 +71,22 @@
               </ion-item-divider>
 
               <ion-item  (click)="goToDetails()">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+                <ion-icon name="person"></ion-icon>
     
                 Profil
               </ion-item> 
               <ion-item   [routerLink]="['/enseignant/bilan']">
-                <ion-icon slot="start" ios="enter-outline" md="enter-sharp"></ion-icon>
+                <ion-icon name="people-circle"></ion-icon>
     
                 Bilan
               </ion-item>
+              <ion-item  [routerLink]="['/admin/specialite']">
+                <ion-icon name="laptop"></ion-icon>
+ 
+                 Filière
+               </ion-item>
+ 
+               
             </ion-list>
              <!-- role==2==>enseignant -->
 

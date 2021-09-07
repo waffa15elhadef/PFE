@@ -1,3 +1,4 @@
+import { EtudiantparSpecialitePageModule } from './admin/etudiantpar-specialite/etudiantpar-specialite.module';
 import { ListeSpecialitePageModule } from './admin/specialite/liste-specialite/liste-specialite.module';
 import { FormModulePageModule } from './admin/form-module/form-module.module';
 import { NgModule } from '@angular/core';
@@ -93,6 +94,10 @@ const routes: Routes = [
   {
     path: 'enseignant/fiche-module/:id',
     loadChildren: () => import('./enseignant/fiche-module/fiche-module.module').then( m => m.FicheModulePageModule)
+  },
+  {
+    path: 'enseignant/etudiantpar-specialite',
+    loadChildren: () => import('./admin/etudiantpar-specialite/etudiantpar-specialite.module').then( m => m.EtudiantparSpecialitePageModule)
   },
   {
     path: 'admin/affectation',
